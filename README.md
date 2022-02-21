@@ -2,7 +2,7 @@
 
 license-scanner is tool to detect license of OSS.
 
-It suprots java/ruby/python/nodejs/go/github.
+It supports java/ruby/python/nodejs/go/github.
 
 ## Usage
 
