@@ -48,10 +48,12 @@ func main() {
 				typ = license.Nodejs
 			case "go":
 				typ = license.Go
+			case "rust":
+				typ = license.Rust
 			case "github":
 				typ = license.GitHub
 			default:
-				return errors.New("please specify option -type in java/ruby/python/nodejs/go/github")
+				return errors.New("please specify option -type in java/ruby/python/nodejs/go/rust/github")
 			}
 			result, confidence, err := license.Scan(name, version, typ)
 			if err != nil {

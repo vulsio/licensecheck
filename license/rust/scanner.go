@@ -1,16 +1,15 @@
-package ruby
+package rust
 
 import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 )
 
-// ScanLicense returns result of fetch https://rubygems.org
+// ScanLicense returns result of fetch https://crates.io
 func ScanLicense(name, version string) (string, float64, error) {
-	ref := "https://rubygems.org/api/v2/rubygems/%s/versions/%s.json"
+	ref := "https://crates.io/api/v1/crates/%v/%v"
 	resp, err := http.Get(fmt.Sprintf(ref, name, version))
 	if err != nil {
 		return "", 0, err
@@ -22,7 +21,9 @@ func ScanLicense(name, version string) (string, float64, error) {
 	}
 
 	license := struct {
-		Licenses []string `json:"licenses"`
+		Version struct {
+			License string `json:"license"`
+		} `json:"version"`
 	}{}
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -32,8 +33,8 @@ func ScanLicense(name, version string) (string, float64, error) {
 
 	json.Unmarshal(b, &license)
 
-	if license.Licenses == nil {
+	if license.Version.License == "" {
 		return "unknown", 0, err
 	}
-	return strings.Join(license.Licenses, ","), 1, err
+	return license.Version.License, 1, err
 }

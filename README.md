@@ -2,7 +2,7 @@
 
 license-scanner is tool to detect license of OSS.
 
-It supports java/ruby/python/nodejs/go/github.
+It supports java/ruby/python/nodejs/go/rust/github.
 
 ## Usage
 
@@ -58,6 +58,7 @@ Information of License will be fetched Data Sources below.
 | Python | https://pypi.org                  |
 | Nodejs | https://registry.npmjs.org        |
 | Go     | https://raw.githubusercontent.com |
+| Rust   | https://crates.io                 |
 | GitHub | https://raw.githubusercontent.com |
 
 ## LICENSE
