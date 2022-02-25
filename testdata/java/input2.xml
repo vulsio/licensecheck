@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.example</groupId>
+	<artifactId>example-core</artifactId>
+	<version>0.1.0</version>
+	<name>example - Core</name>
+	<description>Examples in Java</description>
+	<url>https://github.com/example/example/example-core</url>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>example</id>
+			<name>Oliver Drotbohm</name>
+			<email>example@example.com</email>
+			<organization>Example Software, Inc.</organization>
+			<organizationUrl>https://example.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/example/example/example-core</connection>
+		<developerConnection>scm:git:ssh://git@github.com/example/example.git/example-core</developerConnection>
+		<tag>0.1.0</tag>
+		<url>https://github.com/example/example/example-core</url>
+	</scm>
+</project>
