@@ -9,6 +9,7 @@ import (
 	"github.com/vuls-saas/license-scanner/license/nodejs"
 	"github.com/vuls-saas/license-scanner/license/python"
 	"github.com/vuls-saas/license-scanner/license/ruby"
+	"github.com/vuls-saas/license-scanner/license/rust"
 )
 
 const (
@@ -17,6 +18,7 @@ const (
 	Python
 	Nodejs
 	Go
+	Rust
 	GitHub
 )
 
@@ -33,6 +35,8 @@ func Scan(name, version string, scanType int) (string, float64, error) {
 		return nodejs.ScanLicense(name, version)
 	case Go:
 		return github.ScanLicense(strings.Replace(name, "github.com/", "", 1))
+	case Rust:
+		return rust.ScanLicense(name, version)
 	case GitHub:
 		return github.ScanLicense(name)
 	default:
