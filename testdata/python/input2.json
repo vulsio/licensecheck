@@ -1,0 +1,54 @@
+{
+  "info": {
+    "author": "PSF",
+    "author_email": "UNKNOWN",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: Python Software Foundation License",
+      "Natural Language :: English",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 2",
+      "Programming Language :: Python :: 2.6",
+      "Programming Language :: Python :: 2.7",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.3",
+      "Programming Language :: Python :: Implementation :: CPython"
+    ],
+    "description": "=======\nCHANGES\n=======\n\n1.0.0 (2013-03-06)\n------------------\n\n- Initial PyPI release.\n\n\n========\nRandom 2\n========\n\nThis package provides a Python 3 ported version of Python 2.7's ``random``\nmodule. It has also been back-ported to work in Python 2.6.\n\nIn Python 3, the implementation of ``randrange()`` was changed, so that even\nwith the same seed you get different sequences in Python 2 and 3. Note that\nseveral high-level functions such as ``randint()`` and ``choice()`` use\n``randrange()``.\n\nIn my testing code I heavily rely on stable random generator results and it\nmakes porting code to Python 3 a lot harder, if all those tests have to be\nadjusted. This package fixes that.",
+    "description_content_type": null,
+    "docs_url": null,
+    "download_url": "UNKNOWN",
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "home_page": "http://pypi.python.org/pypi/example",
+    "keywords": "roman",
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "example",
+    "package_url": "https://pypi.org/project/example/",
+    "platform": "UNKNOWN",
+    "project_url": "https://pypi.org/project/example/",
+    "project_urls": {
+      "Download": "UNKNOWN",
+      "Homepage": "http://pypi.python.org/pypi/example"
+    },
+    "release_url": "https://pypi.org/project/example/1.0.0/",
+    "requires_dist": null,
+    "requires_python": null,
+    "summary": "example",
+    "version": "1.0.0",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "releases": {
+  },
+  "urls": [
+  ],
+  "vulnerabilities": []
+}

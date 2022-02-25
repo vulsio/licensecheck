@@ -1,0 +1,49 @@
+{
+  "name": "example",
+  "version": "1.0",
+  "description": "example",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.esm.js",
+  "types": "dist/cjs/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://example.com"
+  },
+  "author": {
+    "name": "example",
+    "email": "example@example.com"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "run-s build:watch"
+  },
+  "keywords": [
+    "example"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@ava/typescript": "^1.1.1",
+    "@types/node": "^14.14.31"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "_id": "example@1.0",
+  "dist": {
+    "shasum": "",
+    "integrity": "sha512-B53pp/",
+    "tarball": "https://registry.npmjs.org/example/-/example-1.0.tgz",
+    "fileCount": 181,
+    "unpackedSize": 267820,
+    "npm-signature": ""
+  }
+}

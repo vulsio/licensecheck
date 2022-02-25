@@ -22,6 +22,9 @@ const (
 	GitHub
 )
 
+// ErrUnKnownScanType is error message when unexpected scanType is given
+var ErrUnKnownScanType = errors.New("unknown scanType is specified")
+
 // Scan returns result of license check(string) and confidence(float64)
 func Scan(name, version string, scanType int) (string, float64, error) {
 	switch scanType {
@@ -40,6 +43,6 @@ func Scan(name, version string, scanType int) (string, float64, error) {
 	case GitHub:
 		return github.ScanLicense(name)
 	default:
-		return "unknown", 0, errors.New("unknown scanType is specified")
+		return "unknown", 0, ErrUnKnownScanType
 	}
 }
