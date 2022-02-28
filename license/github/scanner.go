@@ -1,12 +1,10 @@
 package github
 
 import (
-	"errors"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 
 	"github.com/google/licenseclassifier"
+	"github.com/vuls-saas/license-scanner/license/shared"
 )
 
 var (
@@ -19,9 +17,9 @@ var (
 		"README.md",
 		"COPYING",
 	}
-	ref         = "https://raw.githubusercontent.com/%s/%s/%s"
-	errNotFound = errors.New("no license info found")
 )
+
+const ref = "https://raw.githubusercontent.com/%s/%s/%s"
 
 // ScanLicense returns result of Scan on github.com blob objects
 // fetches LICENSE, README,md, or COPYING of master/main branch, and returns license if confidence is over 90%
@@ -33,7 +31,7 @@ func ScanLicense(name string) (string, float64, error) {
 	}
 	for _, branch := range branches {
 		for _, content := range contents {
-			b, err := fetchBlob(name, branch, content)
+			b, err := shared.Crawl(fmt.Sprintf(ref, name, branch, content))
 			if err != nil {
 				continue
 			}
@@ -47,26 +45,10 @@ func ScanLicense(name string) (string, float64, error) {
 	return "unknown", 0, nil
 }
 
-func fetchBlob(name, branch, content string) ([]byte, error) {
-	resp, err := http.Get(fmt.Sprintf(ref, name, branch, content))
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, errNotFound
-	}
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	return b, nil
-}
-
 func parseResponce(b []byte, c *licenseclassifier.License) (string, float64, error) {
 	matches := c.MultipleMatch(string(b), true)
 	if len(matches) == 0 {
-		return "", 0, errNotFound
+		return "", 0, shared.ErrNotFound
 	}
 	return matches[0].Name, matches[0].Confidence, nil
 }

@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"math"
 	"testing"
+
+	"github.com/vuls-saas/license-scanner/license/shared"
 )
 
 func TestParseResponce(t *testing.T) {
@@ -32,7 +34,7 @@ func TestParseResponce(t *testing.T) {
 			in:         "../../testdata/java/input3.xml",
 			result:     "",
 			confidence: 0,
-			wantErr:    errNotFound,
+			wantErr:    shared.ErrNotFound,
 		},
 	}
 	for _, tt := range tests {

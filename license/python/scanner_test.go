@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"math"
 	"testing"
+
+	"github.com/vuls-saas/license-scanner/license/shared"
 )
 
 func TestParseResponce(t *testing.T) {
@@ -26,7 +28,7 @@ func TestParseResponce(t *testing.T) {
 			in:         "../../testdata/python/input2.json",
 			result:     "",
 			confidence: 0,
-			wantErr:    errNotFound,
+			wantErr:    shared.ErrNotFound,
 		},
 	}
 	for _, tt := range tests {
