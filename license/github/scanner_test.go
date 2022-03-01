@@ -1,13 +1,16 @@
 package github
 
 import (
+	"errors"
 	"io/ioutil"
 	"testing"
 
-	"github.com/google/licenseclassifier"
+	"github.com/golang/mock/gomock"
+	"github.com/vuls-saas/license-scanner/license/shared/mock"
 )
 
-func TestParseResponce(t *testing.T) {
+func TestScanLicense(t *testing.T) {
+	ctrl := gomock.NewController(t)
 	tests := []struct {
 		name       string
 		in         string
@@ -40,16 +43,18 @@ func TestParseResponce(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		classifier, err := licenseclassifier.New(0.9)
-		if err != nil {
-			t.Fatal(err)
-		}
 		t.Run(tt.name, func(t *testing.T) {
 			b, err := ioutil.ReadFile(tt.in)
 			if err != nil {
 				t.Fatal(err)
 			}
-			result, confidence, err := parseResponce(b, classifier)
+			sc := new(Scanner)
+			cl := mock.NewMockCrawler(ctrl)
+			cl.EXPECT().Crawl("https://raw.githubusercontent.com/test/master/LICENSE").Return(nil, errors.New("test"))
+			cl.EXPECT().Crawl(gomock.Any()).Return(b, nil)
+			sc.Crawler = cl
+
+			result, confidence, err := sc.ScanLicense("test", "")
 			if err != nil {
 				t.Fatal(err)
 			}

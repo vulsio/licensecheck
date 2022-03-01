@@ -5,8 +5,14 @@ import (
 	"net/http"
 )
 
+type Crawler interface {
+	Crawl(url string) ([]byte, error)
+}
+
+type DefaultCrawler struct{}
+
 // Crawl executes GET request with options like User-Agent
-func Crawl(url string) ([]byte, error) {
+func (d *DefaultCrawler) Crawl(url string) ([]byte, error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err

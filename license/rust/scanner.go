@@ -9,9 +9,16 @@ import (
 
 const ref = "https://crates.io/api/v1/crates/%v/%v"
 
+type Scanner struct {
+	Crawler shared.Crawler
+}
+
 // ScanLicense returns result of fetch https://crates.io
-func ScanLicense(name, version string) (string, float64, error) {
-	b, err := shared.Crawl(fmt.Sprintf(ref, name, version))
+func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
+	if s.Crawler == nil {
+		s.Crawler = &shared.DefaultCrawler{}
+	}
+	b, err := s.Crawler.Crawl(fmt.Sprintf(ref, name, version))
 	if err != nil {
 		return "unknown", 0, err
 	}

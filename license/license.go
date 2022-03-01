@@ -29,19 +29,19 @@ var ErrUnKnownScanType = errors.New("unknown scanType is specified")
 func Scan(name, version string, scanType int) (string, float64, error) {
 	switch scanType {
 	case Java:
-		return java.ScanLicense(name)
+		return new(java.Scanner).ScanLicense(name, version)
 	case Ruby:
-		return ruby.ScanLicense(name, version)
+		return new(ruby.Scanner).ScanLicense(name, version)
 	case Python:
-		return python.ScanLicense(name, version)
+		return new(python.Scanner).ScanLicense(name, version)
 	case Nodejs:
-		return nodejs.ScanLicense(name, version)
+		return new(nodejs.Scanner).ScanLicense(name, version)
 	case Go:
-		return github.ScanLicense(strings.Replace(name, "github.com/", "", 1))
+		return new(github.Scanner).ScanLicense(strings.Replace(name, "github.com/", "", 1), "")
 	case Rust:
-		return rust.ScanLicense(name, version)
+		return new(rust.Scanner).ScanLicense(name, version)
 	case GitHub:
-		return github.ScanLicense(name)
+		return new(github.Scanner).ScanLicense(name, version)
 	default:
 		return "unknown", 0, ErrUnKnownScanType
 	}

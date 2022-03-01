@@ -9,10 +9,17 @@ import (
 
 const ref = "https://pypi.org/pypi"
 
+type Scanner struct {
+	Crawler shared.Crawler
+}
+
 // ScanLicense returns result of fetch https://pypi.org
 // version is not required (if version is given, the result will be more rigorous)
-func ScanLicense(name, version string) (string, float64, error) {
-	b, err := shared.Crawl(fmt.Sprintf("%s/%s/%s", ref, name, version))
+func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
+	if s.Crawler == nil {
+		s.Crawler = &shared.DefaultCrawler{}
+	}
+	b, err := s.Crawler.Crawl(fmt.Sprintf("%s/%s/%s", ref, name, version))
 	if err != nil {
 		return "unknown", 0, err
 	}

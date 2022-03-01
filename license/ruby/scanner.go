@@ -10,9 +10,16 @@ import (
 
 const ref = "https://rubygems.org/api/v2/rubygems/%s/versions/%s.json"
 
+type Scanner struct {
+	Crawler shared.Crawler
+}
+
 // ScanLicense returns result of fetch https://rubygems.org
-func ScanLicense(name, version string) (string, float64, error) {
-	b, err := shared.Crawl(fmt.Sprintf(ref, name, version))
+func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
+	if s.Crawler == nil {
+		s.Crawler = &shared.DefaultCrawler{}
+	}
+	b, err := s.Crawler.Crawl(fmt.Sprintf(ref, name, version))
 	if err != nil {
 		return "unknown", 0, err
 	}

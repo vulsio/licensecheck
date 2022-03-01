@@ -6,10 +6,13 @@ import (
 	"math"
 	"testing"
 
+	"github.com/golang/mock/gomock"
 	"github.com/vuls-saas/license-scanner/license/shared"
+	"github.com/vuls-saas/license-scanner/license/shared/mock"
 )
 
-func TestParseResponce(t *testing.T) {
+func TestScanLicense(t *testing.T) {
+	ctrl := gomock.NewController(t)
 	tests := []struct {
 		name       string
 		in         string
@@ -32,7 +35,7 @@ func TestParseResponce(t *testing.T) {
 		{
 			name:       "no license info",
 			in:         "../../testdata/java/input3.xml",
-			result:     "",
+			result:     "unknown",
 			confidence: 0,
 			wantErr:    shared.ErrNotFound,
 		},
@@ -43,7 +46,12 @@ func TestParseResponce(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			result, confidence, err := parseResponce(b)
+			sc := new(Scanner)
+			cl := mock.NewMockCrawler(ctrl)
+			cl.EXPECT().Crawl(gomock.Any()).Return(b, nil)
+			sc.Crawler = cl
+
+			result, confidence, err := sc.ScanLicense("test", "")
 			if err != nil && !errors.Is(err, tt.wantErr) {
 				t.Fatal(err)
 			}

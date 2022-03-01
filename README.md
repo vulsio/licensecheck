@@ -47,6 +47,18 @@ func detect(name, version) {
 }
 ```
 
+```main.go
+import	"github.com/vuls-saas/license-scanner/license/python"
+
+func detectWithMinimumImport(name, version) {
+	result, confidence, err := new(python.Scanner).ScanLicense(name, version)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Licnese: %s, Confidense: %d\n", result, int(confidence*100))
+}
+```
+
 ## Scan Data Source
 
 Information of License will be fetched Data Sources below.
