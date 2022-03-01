@@ -29,6 +29,7 @@ func ScanLicense(name string) (string, float64, error) {
 	if err != nil {
 		return "unknown", 0, err
 	}
+	// NOTE: avoid to use GitHub REST API, we want to use it without any tokens, without worrying about the rate limit.
 	for _, branch := range branches {
 		for _, content := range contents {
 			b, err := shared.Crawl(fmt.Sprintf(ref, name, branch, content))
