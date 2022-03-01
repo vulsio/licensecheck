@@ -2,9 +2,9 @@ package license
 
 import (
 	"errors"
-	"strings"
 
 	"github.com/vuls-saas/license-scanner/license/github"
+	"github.com/vuls-saas/license-scanner/license/golicense"
 	"github.com/vuls-saas/license-scanner/license/java"
 	"github.com/vuls-saas/license-scanner/license/nodejs"
 	"github.com/vuls-saas/license-scanner/license/python"
@@ -37,7 +37,7 @@ func Scan(name, version string, scanType int) (string, float64, error) {
 	case Nodejs:
 		return new(nodejs.Scanner).ScanLicense(name, version)
 	case Go:
-		return new(github.Scanner).ScanLicense(strings.Replace(name, "github.com/", "", 1), "")
+		return new(golicense.Scanner).ScanLicense(name, version)
 	case Rust:
 		return new(rust.Scanner).ScanLicense(name, version)
 	case GitHub:

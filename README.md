@@ -69,7 +69,7 @@ Information of License will be fetched Data Sources below.
 | Ruby   | https://rubygems.org              |
 | Python | https://pypi.org                  |
 | Nodejs | https://registry.npmjs.org        |
-| Go     | https://raw.githubusercontent.com |
+| Go     | https://pkg.go.dev                |
 | Rust   | https://crates.io                 |
 | GitHub | https://raw.githubusercontent.com |
 
