@@ -3,14 +3,14 @@ package licensecheck
 import (
 	"errors"
 
-	"github.com/vuls-saas/licensecheck/core/github"
-	"github.com/vuls-saas/licensecheck/core/golicense"
-	"github.com/vuls-saas/licensecheck/core/java"
-	"github.com/vuls-saas/licensecheck/core/nodejs"
-	"github.com/vuls-saas/licensecheck/core/python"
-	"github.com/vuls-saas/licensecheck/core/ruby"
-	"github.com/vuls-saas/licensecheck/core/rust"
-	"github.com/vuls-saas/licensecheck/shared"
+	"github.com/vulsio/licensecheck/core/github"
+	"github.com/vulsio/licensecheck/core/golicense"
+	"github.com/vulsio/licensecheck/core/java"
+	"github.com/vulsio/licensecheck/core/nodejs"
+	"github.com/vulsio/licensecheck/core/python"
+	"github.com/vulsio/licensecheck/core/ruby"
+	"github.com/vulsio/licensecheck/core/rust"
+	"github.com/vulsio/licensecheck/shared"
 )
 
 const (

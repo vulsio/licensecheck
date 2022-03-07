@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/urfave/cli/v2"
-	"github.com/vuls-saas/licensecheck"
+	"github.com/vulsio/licensecheck"
 )
 
 func main() {

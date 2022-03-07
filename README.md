@@ -39,8 +39,8 @@ Licnese: MIT, Confidense: 100%
 
 ```main.go
 import (
-	"github.com/vuls-saas/licensecheck"
-	"github.com/vuls-saas/licensecheck/core/java"
+	"github.com/vulsio/licensecheck"
+	"github.com/vulsio/licensecheck/core/java"
 )
 
 func detect(name, version) {
@@ -54,7 +54,7 @@ func detect(name, version) {
 ```
 
 ```main.go
-import	"github.com/vuls-saas/licensecheck/core/python"
+import	"github.com/vulsio/licensecheck/core/python"
 
 func detectWithMinimumImport(name, version) {
 	result, confidence, err := new(python.Scanner).ScanLicense(name, version)
