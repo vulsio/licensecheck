@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/vuls-saas/license-scanner/license/shared"
+	"github.com/vuls-saas/licensecheck/license/shared"
 )
 
 const (

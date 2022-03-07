@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/vuls-saas/license-scanner/license/shared"
+	"github.com/vuls-saas/licensecheck/license/shared"
 )
 
 const ref = "https://crates.io/api/v1/crates/%v/%v"

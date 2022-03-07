@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/google/licenseclassifier"
-	"github.com/vuls-saas/license-scanner/license/shared"
+	"github.com/vuls-saas/licensecheck/license/shared"
 )
 
 const ref = "https://repo1.maven.org/maven2"

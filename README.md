@@ -1,6 +1,6 @@
-# licnese-scanner
+# licensecheck
 
-license-scanner is tool to detect license of OSS.
+licensecheck is tool to detect license of OSS.
 
 It supports java/ruby/python/nodejs/go/rust/github.
 
@@ -8,10 +8,10 @@ It supports java/ruby/python/nodejs/go/rust/github.
 
 ```
 NAME:
-   license-scanner - License Scanner of OSS
+   licensecheck - License Checker of OSS
 
 USAGE:
-   license-scanner [global options]
+   licensecheck [global options]
 
 COMMANDS:
    help, h  Shows a list of commands or help for one command
@@ -25,7 +25,7 @@ GLOBAL OPTIONS:
 
 ## example
 ```
-$ license-scanner --name rails --version 7.0.1 --type ruby
+$ licensecheck --name rails --version 7.0.1 --type ruby
 Licnese: MIT, Confidense: 100%
 ```
 
@@ -33,8 +33,8 @@ Licnese: MIT, Confidense: 100%
 
 ```main.go
 import (
-	"github.com/vuls-saas/license-scanner/license"
-	"github.com/vuls-saas/license-scanner/license/java"
+	"github.com/vuls-saas/licensecheck/license"
+	"github.com/vuls-saas/licensecheck/license/java"
 )
 
 func detect(name, version) {
@@ -48,7 +48,7 @@ func detect(name, version) {
 ```
 
 ```main.go
-import	"github.com/vuls-saas/license-scanner/license/python"
+import	"github.com/vuls-saas/licensecheck/license/python"
 
 func detectWithMinimumImport(name, version) {
 	result, confidence, err := new(python.Scanner).ScanLicense(name, version)

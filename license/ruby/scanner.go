@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/vuls-saas/license-scanner/license/shared"
+	"github.com/vuls-saas/licensecheck/license/shared"
 )
 
 const ref = "https://rubygems.org/api/v2/rubygems/%s/versions/%s.json"

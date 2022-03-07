@@ -20,7 +20,7 @@ func (d *DefaultCrawler) Crawl(url string) ([]byte, error) {
 
 	// It is recommended to add User-Agent
 	// https://crates.io/policies
-	req.Header.Set("User-Agent", "license-scanner")
+	req.Header.Set("User-Agent", "licensecheck")
 
 	client := new(http.Client)
 	resp, err := client.Do(req)

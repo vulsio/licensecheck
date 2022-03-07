@@ -3,13 +3,13 @@ package license
 import (
 	"errors"
 
-	"github.com/vuls-saas/license-scanner/license/github"
-	"github.com/vuls-saas/license-scanner/license/golicense"
-	"github.com/vuls-saas/license-scanner/license/java"
-	"github.com/vuls-saas/license-scanner/license/nodejs"
-	"github.com/vuls-saas/license-scanner/license/python"
-	"github.com/vuls-saas/license-scanner/license/ruby"
-	"github.com/vuls-saas/license-scanner/license/rust"
+	"github.com/vuls-saas/licensecheck/license/github"
+	"github.com/vuls-saas/licensecheck/license/golicense"
+	"github.com/vuls-saas/licensecheck/license/java"
+	"github.com/vuls-saas/licensecheck/license/nodejs"
+	"github.com/vuls-saas/licensecheck/license/python"
+	"github.com/vuls-saas/licensecheck/license/ruby"
+	"github.com/vuls-saas/licensecheck/license/rust"
 )
 
 const (

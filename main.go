@@ -7,14 +7,14 @@ import (
 	"os"
 
 	"github.com/urfave/cli/v2"
-	"github.com/vuls-saas/license-scanner/license"
+	"github.com/vuls-saas/licensecheck/license"
 )
 
 func main() {
 	app := &cli.App{
-		Name:      "license-scanner",
-		Usage:     "License Scanner of OSS",
-		UsageText: "license-scanner [global options]",
+		Name:      "licensecheck",
+		Usage:     "License Checker of OSS",
+		UsageText: "licensecheck [global options]",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:    "name",
