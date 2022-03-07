@@ -1,19 +1,22 @@
-package rust
+package ruby
 
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
-	"github.com/vuls-saas/licensecheck/license/shared"
+	"github.com/vuls-saas/licensecheck/shared"
 )
 
-const ref = "https://crates.io/api/v1/crates/%v/%v"
+const ref = "https://rubygems.org/api/v2/rubygems/%s/versions/%s.json"
 
+// Scanner is struct to scan license info
+// Crawler is exported to modify or make it easy to test by mock
 type Scanner struct {
 	Crawler shared.Crawler
 }
 
-// ScanLicense returns result of fetch https://crates.io
+// ScanLicense returns result of fetch https://rubygems.org
 func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
 	if s.Crawler == nil {
 		s.Crawler = &shared.DefaultCrawler{}
@@ -31,14 +34,12 @@ func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
 
 func parseResponce(b []byte) (string, float64, error) {
 	license := struct {
-		Version struct {
-			License string `json:"license"`
-		} `json:"version"`
+		Licenses []string `json:"licenses"`
 	}{}
 	json.Unmarshal(b, &license)
 
-	if license.Version.License == "" {
+	if license.Licenses == nil {
 		return "", 0, shared.ErrNotFound
 	}
-	return license.Version.License, 1, nil
+	return strings.Join(license.Licenses, ","), 1, nil
 }

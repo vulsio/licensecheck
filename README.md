@@ -4,6 +4,12 @@ licensecheck is tool to detect license of OSS.
 
 It supports java/ruby/python/nodejs/go/rust/github.
 
+# feature
+
+The purpose of this tool is to collect license information without actually installing the software.
+
+Instead of exploring the file tree, this tool explores information published on the Internet.
+
 ## Usage
 
 ```
@@ -33,13 +39,13 @@ Licnese: MIT, Confidense: 100%
 
 ```main.go
 import (
-	"github.com/vuls-saas/licensecheck/license"
-	"github.com/vuls-saas/licensecheck/license/java"
+	"github.com/vuls-saas/licensecheck"
+	"github.com/vuls-saas/licensecheck/core/java"
 )
 
 func detect(name, version) {
 	name = java.ToMavenPomName(name)
-	result, confidence, err := license.Scan(name, version, license.Java)
+	result, confidence, err := new(licensecheck.Scanner).Scan(name, version, license.Java)
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +54,7 @@ func detect(name, version) {
 ```
 
 ```main.go
-import	"github.com/vuls-saas/licensecheck/license/python"
+import	"github.com/vuls-saas/licensecheck/core/python"
 
 func detectWithMinimumImport(name, version) {
 	result, confidence, err := new(python.Scanner).ScanLicense(name, version)
@@ -72,27 +78,3 @@ Information of License will be fetched Data Sources below.
 | Go     | https://pkg.go.dev                |
 | Rust   | https://crates.io                 |
 | GitHub | https://raw.githubusercontent.com |
-
-## LICENSE
-
-MIT License
-
-Copyright (c) 2022 FutureVuls
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.

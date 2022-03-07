@@ -1,25 +1,26 @@
-package python
+package nodejs
 
 import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/vuls-saas/licensecheck/license/shared"
+	"github.com/vuls-saas/licensecheck/shared"
 )
 
-const ref = "https://pypi.org/pypi"
+const ref = "https://registry.npmjs.org/%s/%s"
 
+// Scanner is struct to scan license info
+// Crawler is exported to modify or make it easy to test by mock
 type Scanner struct {
 	Crawler shared.Crawler
 }
 
-// ScanLicense returns result of fetch https://pypi.org
-// version is not required (if version is given, the result will be more rigorous)
+// ScanLicense returns result of fetch https://registry.npmjs.org
 func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
 	if s.Crawler == nil {
 		s.Crawler = &shared.DefaultCrawler{}
 	}
-	b, err := s.Crawler.Crawl(fmt.Sprintf("%s/%s/%s", ref, name, version))
+	b, err := s.Crawler.Crawl(fmt.Sprintf(ref, name, version))
 	if err != nil {
 		return "unknown", 0, err
 	}
@@ -32,13 +33,12 @@ func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
 
 func parseResponce(b []byte) (string, float64, error) {
 	license := struct {
-		Info struct {
-			License string `json:"license"`
-		} `json:"info"`
+		License string `json:"license"`
 	}{}
 	json.Unmarshal(b, &license)
-	if license.Info.License == "" {
+
+	if license.License == "" {
 		return "", 0, shared.ErrNotFound
 	}
-	return license.Info.License, 1, nil
+	return license.License, 1, nil
 }

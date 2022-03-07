@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/urfave/cli/v2"
-	"github.com/vuls-saas/licensecheck/license"
+	"github.com/vuls-saas/licensecheck"
 )
 
 func main() {
@@ -39,23 +39,23 @@ func main() {
 			var typ int
 			switch c.String("type") {
 			case "java":
-				typ = license.Java
+				typ = licensecheck.Java
 			case "ruby":
-				typ = license.Ruby
+				typ = licensecheck.Ruby
 			case "python":
-				typ = license.Python
+				typ = licensecheck.Python
 			case "nodejs":
-				typ = license.Nodejs
+				typ = licensecheck.Nodejs
 			case "go":
-				typ = license.Go
+				typ = licensecheck.Go
 			case "rust":
-				typ = license.Rust
+				typ = licensecheck.Rust
 			case "github":
-				typ = license.GitHub
+				typ = licensecheck.GitHub
 			default:
 				return errors.New("please specify option -type in java/ruby/python/nodejs/go/rust/github")
 			}
-			result, confidence, err := license.Scan(name, version, typ)
+			result, confidence, err := new(licensecheck.Scanner).Scan(name, version, typ)
 			if err != nil {
 				panic(err)
 			}

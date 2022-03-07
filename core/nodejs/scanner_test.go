@@ -1,4 +1,4 @@
-package ruby
+package nodejs
 
 import (
 	"errors"
@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	"github.com/vuls-saas/licensecheck/license/shared"
-	"github.com/vuls-saas/licensecheck/license/shared/mock"
+	"github.com/vuls-saas/licensecheck/shared"
+	"github.com/vuls-saas/licensecheck/shared/mock"
 )
 
 func TestScanLicense(t *testing.T) {
@@ -22,13 +22,13 @@ func TestScanLicense(t *testing.T) {
 	}{
 		{
 			name:       "success",
-			in:         "../../testdata/ruby/input1.json",
+			in:         "../../testdata/nodejs/input1.json",
 			result:     "MIT",
 			confidence: 1,
 		},
 		{
 			name:       "no license info",
-			in:         "../../testdata/ruby/input2.json",
+			in:         "../../testdata/nodejs/input2.json",
 			result:     "unknown",
 			confidence: 0,
 			wantErr:    shared.ErrNotFound,

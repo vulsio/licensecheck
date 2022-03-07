@@ -1,14 +1,12 @@
-package python
+package github
 
 import (
 	"errors"
 	"io/ioutil"
-	"math"
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	"github.com/vuls-saas/licensecheck/license/shared"
-	"github.com/vuls-saas/licensecheck/license/shared/mock"
+	"github.com/vuls-saas/licensecheck/shared/mock"
 )
 
 func TestScanLicense(t *testing.T) {
@@ -18,20 +16,30 @@ func TestScanLicense(t *testing.T) {
 		in         string
 		result     string
 		confidence float64
-		wantErr    error
 	}{
 		{
-			name:       "success",
-			in:         "../../testdata/python/input1.json",
+			name:       "MIT",
+			in:         "../../testdata/github/MIT_sample.txt",
 			result:     "MIT",
 			confidence: 1,
 		},
 		{
-			name:       "no license info",
-			in:         "../../testdata/python/input2.json",
-			result:     "unknown",
-			confidence: 0,
-			wantErr:    shared.ErrNotFound,
+			name:       "Apache-2.0",
+			in:         "../../testdata/github/Apache-2.0_sample.txt",
+			result:     "Apache-2.0",
+			confidence: 1,
+		},
+		{
+			name:       "GPL-3.0",
+			in:         "../../testdata/github/GPL-3.0_sample.txt",
+			result:     "GPL-3.0",
+			confidence: 1,
+		},
+		{
+			name:       "MIT in README",
+			in:         "../../testdata/github/README_sample.md",
+			result:     "MIT",
+			confidence: 1,
 		},
 	}
 	for _, tt := range tests {
@@ -42,17 +50,18 @@ func TestScanLicense(t *testing.T) {
 			}
 			sc := new(Scanner)
 			cl := mock.NewMockCrawler(ctrl)
+			cl.EXPECT().Crawl("https://raw.githubusercontent.com/test/master/LICENSE").Return(nil, errors.New("test"))
 			cl.EXPECT().Crawl(gomock.Any()).Return(b, nil)
 			sc.Crawler = cl
 
 			result, confidence, err := sc.ScanLicense("test", "")
-			if err != nil && !errors.Is(err, tt.wantErr) {
+			if err != nil {
 				t.Fatal(err)
 			}
 			if result != tt.result {
 				t.Errorf("want: %s, got: %s", tt.result, result)
 			}
-			if math.Abs(confidence-tt.confidence) >= 1e-6 {
+			if confidence != tt.confidence {
 				t.Errorf("want: %f, got: %f", tt.confidence, confidence)
 			}
 		})

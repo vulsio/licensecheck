@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/vuls-saas/licensecheck/license/shared"
+	"github.com/vuls-saas/licensecheck/shared"
 )
 
 const (
@@ -13,6 +13,8 @@ const (
 	refWithVersion = "https://pkg.go.dev/%s@%s?tab=licenses"
 )
 
+// Scanner is struct to scan license info
+// Crawler is exported to modify or make it easy to test by mock
 type Scanner struct {
 	Crawler shared.Crawler
 }

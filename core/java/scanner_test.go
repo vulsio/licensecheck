@@ -1,4 +1,4 @@
-package rust
+package java
 
 import (
 	"errors"
@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	"github.com/vuls-saas/licensecheck/license/shared"
-	"github.com/vuls-saas/licensecheck/license/shared/mock"
+	"github.com/vuls-saas/licensecheck/shared"
+	"github.com/vuls-saas/licensecheck/shared/mock"
 )
 
 func TestScanLicense(t *testing.T) {
@@ -21,14 +21,20 @@ func TestScanLicense(t *testing.T) {
 		wantErr    error
 	}{
 		{
-			name:       "success",
-			in:         "../../testdata/rust/input1.json",
-			result:     "MIT",
+			name:       "xml comment",
+			in:         "../../testdata/java/input1.xml",
+			result:     "Apache-2.0",
+			confidence: 0.911111,
+		},
+		{
+			name:       "xml body",
+			in:         "../../testdata/java/input2.xml",
+			result:     "Apache License, Version 2.0",
 			confidence: 1,
 		},
 		{
 			name:       "no license info",
-			in:         "../../testdata/rust/input2.json",
+			in:         "../../testdata/java/input3.xml",
 			result:     "unknown",
 			confidence: 0,
 			wantErr:    shared.ErrNotFound,
