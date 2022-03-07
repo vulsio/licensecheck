@@ -1,4 +1,4 @@
-module github.com/vuls-saas/licensecheck
+module github.com/vulsio/licensecheck
 
 go 1.17
 
@@ -16,4 +16,4 @@ require (
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 )
 
-replace github.com/vuls-saas/licensecheck => ./
+replace github.com/vulsio/licensecheck => ./

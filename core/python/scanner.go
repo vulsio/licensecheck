@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/vuls-saas/licensecheck/shared"
+	"github.com/vulsio/licensecheck/shared"
 )
 
 const ref = "https://pypi.org/pypi"

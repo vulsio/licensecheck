@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	"github.com/vuls-saas/licensecheck/shared/mock"
+	"github.com/vulsio/licensecheck/shared/mock"
 )
 
 func TestScanLicense(t *testing.T) {
