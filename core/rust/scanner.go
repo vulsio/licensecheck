@@ -37,7 +37,9 @@ func parseResponce(b []byte) (string, float64, error) {
 			License string `json:"license"`
 		} `json:"version"`
 	}{}
-	json.Unmarshal(b, &license)
+	if err := json.Unmarshal(b, &license); err != nil {
+		return "", 0, shared.ErrNotFound
+	}
 
 	if license.Version.License == "" {
 		return "", 0, shared.ErrNotFound
