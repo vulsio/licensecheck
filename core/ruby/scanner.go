@@ -36,7 +36,9 @@ func parseResponce(b []byte) (string, float64, error) {
 	license := struct {
 		Licenses []string `json:"licenses"`
 	}{}
-	json.Unmarshal(b, &license)
+	if err := json.Unmarshal(b, &license); err != nil {
+		return "", 0, shared.ErrNotFound
+	}
 
 	if license.Licenses == nil {
 		return "", 0, shared.ErrNotFound
