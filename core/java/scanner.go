@@ -48,7 +48,9 @@ func (s *Scanner) ScanLicense(name, _ string) (string, float64, error) {
 
 func parseResponce(b []byte) (string, float64, error) {
 	var p Project
-	xml.Unmarshal(b, &p)
+	if err := xml.Unmarshal(b, &p); err != nil {
+		return "", 0, err
+	}
 	if p.Licenses.License.Name != "" {
 		return p.Licenses.License.Name, 1, nil
 	}
