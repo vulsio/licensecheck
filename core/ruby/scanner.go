@@ -40,7 +40,7 @@ func parseResponce(b []byte) (string, float64, error) {
 		return "", 0, shared.ErrNotFound
 	}
 
-	if license.Licenses == nil {
+	if len(license.Licenses) == 0 {
 		return "", 0, shared.ErrNotFound
 	}
 	return strings.Join(license.Licenses, ","), 1, nil

@@ -57,7 +57,7 @@ func main() {
 			}
 			result, confidence, err := new(licensecheck.Scanner).Scan(name, version, typ)
 			if err != nil {
-				panic(err)
+				return err
 			}
 			fmt.Printf("Licnese: %s, Confidense: %d%%\n", result, int(confidence*100))
 			return nil
