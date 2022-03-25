@@ -2,7 +2,8 @@ package python
 
 import (
 	"encoding/json"
-	"fmt"
+	"net/url"
+	"path"
 
 	"github.com/vulsio/licensecheck/shared"
 )
@@ -21,7 +22,12 @@ func (s *Scanner) ScanLicense(name, version string) (string, float64, error) {
 	if s.Crawler == nil {
 		s.Crawler = &shared.DefaultCrawler{}
 	}
-	b, err := s.Crawler.Crawl(fmt.Sprintf("%s/%s/%s", ref, name, version))
+	u, err := url.Parse(ref)
+	if err != nil {
+		return "unknown", 0, err
+	}
+	u.Path = path.Join(u.Path, name, version, "json")
+	b, err := s.Crawler.Crawl(u.String())
 	if err != nil {
 		return "unknown", 0, err
 	}
