@@ -2,7 +2,7 @@
 
 licensecheck is tool to detect license of OSS.
 
-It supports java/ruby/python/nodejs/go/rust/github.
+It supports java/php/ruby/python/nodejs/go/rust/github.
 
 # feature
 
@@ -72,6 +72,7 @@ Information of License will be fetched Data Sources below.
 | target | data source                       |
 | ------ | --------------------------------- |
 | Java   | https://repo1.maven.org           |
+| PHP    | https://packagist.org             |
 | Ruby   | https://rubygems.org              |
 | Python | https://pypi.org                  |
 | Nodejs | https://registry.npmjs.org        |

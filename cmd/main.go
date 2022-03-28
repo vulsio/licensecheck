@@ -40,6 +40,8 @@ func main() {
 			switch c.String("type") {
 			case "java":
 				typ = licensecheck.Java
+			case "php":
+				typ = licensecheck.PHP
 			case "ruby":
 				typ = licensecheck.Ruby
 			case "python":
@@ -53,7 +55,7 @@ func main() {
 			case "github":
 				typ = licensecheck.GitHub
 			default:
-				return errors.New("please specify option -type in java/ruby/python/nodejs/go/rust/github")
+				return errors.New("please specify option -type in java/php/ruby/python/nodejs/go/rust/github")
 			}
 			result, confidence, err := new(licensecheck.Scanner).Scan(name, version, typ)
 			if err != nil {

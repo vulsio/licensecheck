@@ -1,0 +1,16 @@
+{
+  "package": {
+    "versions": {
+      "dev-master": {
+        "license": [
+          "MIT"
+        ]
+      },
+      "1.0.0": {
+        "license": [
+          "MIT"
+        ]
+      }
+    }
+  }
+}

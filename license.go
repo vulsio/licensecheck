@@ -7,6 +7,7 @@ import (
 	"github.com/vulsio/licensecheck/core/golicense"
 	"github.com/vulsio/licensecheck/core/java"
 	"github.com/vulsio/licensecheck/core/nodejs"
+	"github.com/vulsio/licensecheck/core/php"
 	"github.com/vulsio/licensecheck/core/python"
 	"github.com/vulsio/licensecheck/core/ruby"
 	"github.com/vulsio/licensecheck/core/rust"
@@ -15,6 +16,7 @@ import (
 
 const (
 	Java = iota
+	PHP
 	Ruby
 	Python
 	Nodejs
@@ -38,6 +40,8 @@ func (s *Scanner) Scan(name, version string, scanType int) (string, float64, err
 	switch scanType {
 	case Java:
 		sc = &java.Scanner{Crawler: s.Crawler}
+	case PHP:
+		sc = &php.Scanner{Crawler: s.Crawler}
 	case Ruby:
 		sc = &ruby.Scanner{Crawler: s.Crawler}
 	case Python:
